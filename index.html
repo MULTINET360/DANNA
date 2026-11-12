@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estado de cuenta detallado de Danna Molina Gutiérrez">
+  <title>Estado de cuenta | Danna Molina Gutiérrez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio"><span class="brand-mark">D</span><span><strong>Estado de cuenta</strong><small>Control de compras y pagos</small></span></a>
+    <nav><a href="#resumen">Resumen</a><a href="#documentos">Documentos</a><a href="#productos">Productos</a><a href="#pagos">Pagos</a></nav>
+    <button class="button button-dark" id="printButton" type="button">Imprimir reporte</button>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">CUENTA CC2350 · CORTE AL 31 DE AGOSTO DE 2026</p>
+        <h1>Danna Molina<br>Gutiérrez</h1>
+        <p class="hero-copy">Detalle de las compras registradas, los pagos aplicados y el saldo pendiente. Todos los importes están expresados en bolivianos.</p>
+      </div>
+      <div class="balance-panel">
+        <p>Saldo pendiente</p>
+        <strong>Bs 12.611,00</strong>
+        <span>Dos documentos mantienen saldo</span>
+        <div class="balance-split">
+          <div><small>Total comprado</small><b>Bs 15.280,00</b></div>
+          <div><small>Total pagado</small><b>Bs 2.669,00</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice"><span>CONCILIACIÓN</span><p><b>Bs 0,00</b> saldo anterior + <b>Bs 15.280,00</b> compras − <b>Bs 2.669,00</b> pagos = <strong>Bs 12.611,00</strong></p></section>
+
+    <section id="resumen" class="section">
+      <div class="section-heading"><div><p class="eyebrow">VISIÓN GENERAL</p><h2>Resumen de la cuenta</h2></div><p>Periodo: enero a agosto de 2026</p></div>
+      <div class="metric-grid">
+        <article class="metric"><span>01</span><p>Compras registradas</p><strong>Bs 15.280,00</strong><small>2 documentos de venta</small></article>
+        <article class="metric"><span>02</span><p>Pagos realizados</p><strong>Bs 2.669,00</strong><small>7 comprobantes de pago</small></article>
+        <article class="metric"><span>03</span><p>Producto retirado</p><strong>1.950 litros</strong><small>8 tipos de producto</small></article>
+        <article class="metric accent"><span>04</span><p>Saldo pendiente</p><strong>Bs 12.611,00</strong><small>82,5% del total comprado</small></article>
+      </div>
+
+      <div class="split-grid">
+        <article class="card chart-card">
+          <div class="card-heading"><div><p class="kicker">MOVIMIENTO MENSUAL</p><h3>Compras frente a pagos</h3></div><div class="legend"><span><i class="dot purchases"></i>Compras</span><span><i class="dot payments"></i>Pagos</span></div></div>
+          <div id="monthlyChart" class="monthly-chart"></div>
+        </article>
+        <article class="card progress-card">
+          <p class="kicker">AVANCE DE PAGO</p><h3>17,5% del total cubierto</h3><p class="muted">Cálculo sobre las compras registradas.</p>
+          <div class="donut" style="--value:17.5"><div><strong>17,5%</strong><span>pagado</span></div></div>
+          <div class="progress-row"><span>Compras</span><b>Bs 15.280,00</b></div>
+          <div class="progress-row"><span>Pagos</span><b>Bs 2.669,00</b></div>
+          <div class="progress-row total"><span>Pendiente</span><b>Bs 12.611,00</b></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="documentos" class="section section-tint">
+      <div class="section-heading"><div><p class="eyebrow">DOCUMENTO POR DOCUMENTO</p><h2>Compras y saldo</h2></div><button class="button" id="downloadButton" type="button">Descargar CSV</button></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Fecha</th><th>Documento</th><th class="number">Comprado</th><th class="number">Pagado</th><th class="number">Saldo</th><th>Estado</th></tr></thead><tbody id="invoiceRows"></tbody></table>
+      </div>
+      <p class="table-note">El archivo fuente no contiene fechas de vencimiento. Por esa razón, el reporte muestra el saldo pendiente sin clasificarlo como vencido o por vencer.</p>
+    </section>
+
+    <section id="productos" class="section">
+      <div class="section-heading"><div><p class="eyebrow">DETALLE DE MERCADERÍA</p><h2>Productos retirados</h2></div><p>Todo el movimiento está registrado en litros</p></div>
+      <div class="product-summary"><article><strong>1.950</strong><span>litros retirados</span></article><article><strong>8</strong><span>tipos de producto</span></article><article><strong>2</strong><span>documentos de compra</span></article><article><strong>Bs 15.280</strong><span>valor total retirado</span></article></div>
+      <div class="table-wrap compact"><table><thead><tr><th>Producto</th><th>Presentación</th><th class="number">Cantidad</th><th class="number">Importe</th><th>Participación</th></tr></thead><tbody id="productRows"></tbody></table></div>
+    </section>
+
+    <section id="pagos" class="section section-dark">
+      <div class="section-heading light"><div><p class="eyebrow">HISTORIAL COMPLETO</p><h2>Pagos aplicados</h2></div><p>Total pagado: Bs 2.669,00</p></div>
+      <div id="paymentTimeline" class="timeline"></div>
+      <div class="payment-total"><span>Todos los pagos se aplicaron al documento</span><strong>N1-022029</strong><span>Total acumulado</span><strong>Bs 2.669,00</strong></div>
+    </section>
+
+    <section class="section final-balance">
+      <div><p class="eyebrow">SALDO POR DOCUMENTO</p><h2>Detalle pendiente al corte</h2><p>Los dos documentos continúan con saldo. El pago acumulado se aplicó únicamente a N1-022029.</p></div>
+      <div class="balance-list">
+        <article><div><small>29/01/2026</small><h3>N1-022029</h3></div><div><small>Saldo</small><strong>Bs 11.411,00</strong></div></article>
+        <article><div><small>05/02/2026</small><h3>N1-022080</h3></div><div><small>Saldo</small><strong>Bs 1.200,00</strong></div></article>
+        <article class="total"><div><small>TOTAL</small><h3>Pendiente</h3></div><div><small>Saldo final</small><strong>Bs 12.611,00</strong></div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div><strong>Estado de cuenta de Danna Molina Gutiérrez</strong><p>Preparado a partir de los registros de compras y abonos.</p></div><div class="footer-meta"><span>Cuenta CC2350</span><span>Corte: 31/08/2026</span><span>Moneda: BOB</span></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
